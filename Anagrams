@@ -1,0 +1,13 @@
+class Solution:
+    # @param A : tuple of strings
+    # @return a list of list of integers
+    def anagrams(self, A):
+        len_A = len(A)
+        lis = [str(sorted(A[i])) for i in range(0,len_A,1)] #sorts characters of each string (forms list) and creates string of each
+        ans = {}
+        for i in range(0,len_A,1):
+            if lis[i] in ans:       #if string is already present in dict appends index to existing value list
+                ans[lis[i]].append(i+1)
+            else:                   #if string is not present in dictionary add index as value in dict
+                ans[lis[i]] = [i+1]
+        return(list(ans.values()))
