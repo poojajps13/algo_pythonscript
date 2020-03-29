@@ -1,0 +1,20 @@
+class Solution:
+    # @param A : string
+    # @return an integer
+    def braces(self, A):
+        stack = []
+        for character in A:
+            if( character == ')'):      #if character is closing bracket
+                stack_top = stack[-1]
+                stack.pop()
+                flag = 0
+                while( stack_top != '('):       #pops element until any opening bracket is encountered
+                    if stack_top == '+' or stack_top == '-' or stack_top == '*' or stack_top =='/': #checks whether any operand is encountered yet or not
+                        flag = 1
+                    stack_top = stack[-1]
+                    stack.pop()
+                if not(flag):       #if redundant brackets encountered than return '1'
+                    return 1
+            else:                   #adding elements to stack
+                stack.append(character)
+        return 0
